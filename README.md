@@ -26,84 +26,69 @@ This script scrapes Billboard’s Hot 100 chart for a given date, searches the t
 
 ---
 
-
 ## 📂 Project Structure
 
-```text
-.
-├── main.py
-├── requirements.txt
-├── .env.example
-└── README.md
+```bash
+spotify-playlist-creator/
+├── spotify_playlist_creator.py  # Main script
+├── Dockerfile
+├── docker-compose.yml
+├── .env                         # Spotify credentials
+├── README.md
+└── requirements.txt     
+```
 
-````
+## ⚡ Setup and Usage
 
-## ⚙️ Installation & Setup
+1. Install dependencies:
 
-1. Clone the repository
-   ```text
+```bash
+git clone https://github.com/Fayyaz6137/Spotify-Playlist-of-new-top-100-songs.git
 
-   git clone <YOUR_GITHUB_REPO_URL>
-   cd billboard-spotify-playlist
+cd Spotify-Playlist-of-new-top-100-songs
 
-2. Create and activate a virtual environment (recommended)
-   ```text
+pip install -r requirements.txt
+```
 
-   python -m venv venv
+2. Create a .env file in the project root:
 
-   macOS / Linux:
-   source venv/bin/activate
+```bash
+CLIENT_ID=your_spotify_client_id
 
-   Windows:
-   venv\Scripts\activate
+CLIENT_SECRET=your_spotify_client_secret
+```
 
-3. Install dependencies
-   ```text
+3. Run the script locally:
 
-   pip install -r requirements.txt
-   
-    ```
+```bash
+python main.py
+```
 
-   requirements.txt contents:
-    ```text
+---
 
-   beautifulsoup4==4.14.2
-   requests==2.32.5
-   spotipy==2.25.2
-   python-dotenv==1.1.1
+## 🐳 Run With Docker
 
-4. Configure Spotify Developer Dashboard
+```bash
+docker compose up --build
+```
+The script reads .env variables for API keys.
 
-   - Go to: https://developer.spotify.com/dashboard
-   - Create a new application
-   - Add the following Redirect URI:
-    ```text
+---
 
-     http://127.0.0.1:8888/callback
+## ⚠️ Notes
 
-5. Set up environment variables
+* Make sure your Spotify app has the correct redirect URI (http://127.0.0.1:8888/callback) set in your Spotify Developer Dashboard.
+* The script currently limits to 4 songs for testing; you can remove the if counter > 4: break line to process all top 100 tracks.
 
-   Create a .env file in the project root:
-    ```text
+---
 
-   CLIENT_ID=your_spotify_client_id
-   CLIENT_SECRET=your_spotify_client_secret
-    
-     ```
+## 📌 References
 
-   Do NOT commit the .env file to GitHub.
+- [Billboard Hot 100](https://www.billboard.com/charts/hot-100/)
+- [Spotipy Documentation](https://spotipy.readthedocs.io/)
+- [BeautifulSoup Documentation](https://www.crummy.com/software/BeautifulSoup/bs4/doc/)
 
-6. Run the application
-    ```text
 
-   python main.py
-    
-     ```
-   When prompted, enter the date in the following format:
-
-   YYYY-MM-DD
-
-   A private Spotify playlist will be created automatically in your account.
 
 
 
